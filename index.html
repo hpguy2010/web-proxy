@@ -6,19 +6,13 @@
 <body>
     <h1>Simple Web Proxy</h1>
     <input type="text" id="url" placeholder="Enter URL" style="width: 400px;">
-    <button onclick="fetchContent()">Fetch</button>
-    <pre id="output"></pre>
+    <button onclick="loadInIframe()">Fetch</button>
+    <iframe id="output" style="width: 100%; height: 500px; border: 1px solid #ccc;"></iframe>
 
     <script>
-        async function fetchContent() {
+        function loadInIframe() {
             const url = document.getElementById('url').value;
-            try {
-                const response = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
-                const text = await response.text();
-                document.getElementById('output').textContent = text;
-            } catch (error) {
-                document.getElementById('output').textContent = `Error: ${error.message}`;
-            }
+            document.getElementById('output').src = url;
         }
     </script>
 </body>
